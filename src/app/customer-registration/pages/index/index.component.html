@@ -1,0 +1,41 @@
+<div class="ui-g">
+	<div class="ui-g-6">
+		<p-toolbar>
+			<div class="ui-toolbar-group-left">
+				<button pButton type="button" label="Novo" icon="pi pi-plus" (click)="register()"></button>
+			</div>
+			<div class="ui-toolbar-group-right">
+				<div class="ui-inputgroup">
+					<span class="ui-inputgroup-addon"><i class="pi pi-search"></i></span>
+					<input type="text" (keyup)="searchCustomer(searchInput.value)"
+						   #searchInput 
+						   pInputText placeholder="Pesquisar...">
+				</div>
+			</div>
+		</p-toolbar>
+		<div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nome</th>
+						<th scope="col">Sobrenome</th>
+						<th scope="col">RG</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let customer of customers; let index of index"
+						(click)="editCustomer(customer)">
+						<th scope="row">{{customer.id}}</th>
+						<td>{{customer.name}}</td>
+						<td>{{customer.lastName}}</td>
+						<td>{{customer.gr}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="ui-g-6">
+		<router-outlet></router-outlet>
+	</div>
+</div>

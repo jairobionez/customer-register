@@ -1,0 +1,110 @@
+<p-panel>
+	<p-header>
+		Cadastro de cliente
+	</p-header>
+	<form [formGroup]="form">
+		<input type="hidden" formControlName="id">
+		<p-fieldset legend="Dados pessoais">
+			<div class="ui-g">
+				<div class="ui-g-4">
+					<span class="ui-float-label">
+						<input type="text" pInputText formControlName="name" />
+						<label for="name"><b>Nome*</b></label>
+					</span>
+				</div>
+				<div class="ui-g-8">
+					<span class="ui-float-label">
+						<input type="text" class="w-100" pInputText formControlName="lastName" />
+						<label for="lastName"><b>Sobrenome*</b></label>
+					</span>
+				</div>
+			</div>
+			<div class="ui-g mt-2">
+				<div class="ui-g-4">
+					<span class="ui-float-label">
+						<input type="text" pInputText formControlName="type" />
+						<label for="type"><b>Tipo*</b></label>
+					</span>
+				</div>
+				<div class="ui-g-4">
+					<span class="ui-float-label">
+						<input type="text" pInputText formControlName="gr" />
+						<label for="gr"><b>RG*</b></label>
+					</span>
+				</div>
+				<div class="ui-g-4">
+					<span class="ui-float-label">
+						<p-inputMask formControlName="phoneNumber" mask="(99)99999-9999"></p-inputMask>
+						<label for="phoneNumber"><b>Celular</b></label>
+					</span>
+				</div>
+			</div>
+		</p-fieldset>
+
+		<p-fieldset legend="Endereço">
+			<div class="ui-g" formGroupName="address">
+				<div class="ui-g-4">
+					<span class="ui-float-label">
+						<input type="text" pInputText formControlName="city" />
+						<label for="city"><b>Cidade*</b></label>
+					</span>
+				</div>
+				<div class="ui-g-4">
+					<span class="ui-float-label">
+						<input type="text" pInputText formControlName="state" />
+						<label for="state"><b>Estado*</b></label>
+					</span>
+				</div>
+				<div class="ui-g-4">
+					<span class="ui-float-label">
+						<input type="text" pInputText formControlName="neighborhood" />
+						<label for="neighborhood"><b>Bairro</b></label>
+					</span>
+				</div>
+			</div>
+			<div class="ui-g mt-2" formGroupName="address">
+				<div class="ui-g-4">
+					<span class="ui-float-label">
+						<input type="text" pInputText formControlName="zipCode" />
+						<label for="zipCode"><b>CEP*</b></label>
+					</span>
+				</div>
+				<div class="ui-g-8">
+					<span class="ui-float-label">
+						<input type="text" class="w-100" pInputText formControlName="street" />
+						<label for="street"><b>Rua</b></label>
+					</span>
+				</div>
+			</div>
+		</p-fieldset>
+	</form>
+	<p-footer>
+		<div class="ui-g">
+			<div class="ui-g-6"></div>
+			<div class="ui-g-2">
+				<button *ngIf="!idCustomer" pButton type="submit" label="Salvar" icon="pi pi-save"
+				(click)="save()">
+				</button>
+				<button *ngIf="idCustomer" pButton type="button" label="Editar" icon="pi pi-pencil"
+				(click)="update()">
+				</button>
+			</div>
+			<div class="ui-g-2">
+				<button *ngIf="!idCustomer" pButton type="button" (click)="clear()" 
+						label="Limpar" icon="pi pi-trash" class="ui-button-secondary">
+				</button>
+				<button *ngIf="idCustomer" pButton type="button" (click)="delete()"
+						label="Deletar" icon="pi pi-trash" class="ui-button-danger">
+				</button>
+			</div>
+			<div class="ui-g-2">
+				<button pButton type="button" label="Cancelar" icon="pi pi-ban" (click)="cancel()"
+				class="ui-button-secondary">
+				</button>
+			</div>
+		</div>
+
+	</p-footer>
+</p-panel>
+
+<p-messages [value]="msgs"></p-messages>
